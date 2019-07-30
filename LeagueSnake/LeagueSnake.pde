@@ -29,10 +29,11 @@ int foodX;
 int foodY;
 Segment head;
    int foodEaten;
-
 int direction=UP;
-
 int amountEaten = 0;
+//Segment is snake tail
+ArrayList<Segment> tail= new ArrayList<Segment>();
+
 
 
 //*
@@ -68,12 +69,14 @@ void draw(){
   eat();
 }
 
-void drawFood() {
-  //Draw the food
+//Left off here, Part 3 of snake and the drawTail() method *check the arrayList of segments part*
 
-  fill(255,0,0);
-  rect(foodX,foodY,10,10);
-}
+//void drawFood() {
+//  //Draw the food
+//
+//  fill(255,0,0);
+//  rect(foodX,foodY,10,10);
+//}
 
 void drawSnake() {
   //Draw the head of the snake followed by its tail
@@ -81,9 +84,9 @@ void drawSnake() {
   rect(head.x,head.y,10,10);
   //drawTail();
 }
- //void drawTail(){
-   
-//}
+void drawTail(){
+   rect(head.x-10,head.y-10, 10, 10);
+}
 
  void checkTailCollision() {
 
@@ -133,12 +136,15 @@ void move() {
 void checkBoundaries() {
  //If the snake leaves the frame, make it reappear on the other side
   
- if(head.y==10){
+ if(head.y<=-1||head.y==height){
    JOptionPane.showMessageDialog(null, "You Lose!");
+   System.exit(0);
  }
- if(head.x==10){
+ if(head.x<=-1||head.x==width){
    JOptionPane.showMessageDialog(null, "You Lose!");
+   System.exit(0);
  }
+
 }
  void eat(){
    if(head.x==foodX&&head.y==foodY){
