@@ -23,7 +23,7 @@ Segment(int x, int y){
 
 
 // All the game variables that will be shared by the game methods are here
-//*
+//****GAME VARIABLES****
 
 int foodX;
 int foodY;
@@ -67,16 +67,14 @@ void draw(){
   move();
   drawSnake();
   eat();
+  
 }
 
-//Left off here, Part 3 of snake and the drawTail() method *check the arrayList of segments part*
-
-//void drawFood() {
-//  //Draw the food
-//
-//  fill(255,0,0);
-//  rect(foodX,foodY,10,10);
-//}
+// draw the food
+void drawFood() {
+ fill(255,0,0);
+ rect(foodX,foodY,10,10);
+}
 
 void drawSnake() {
   //Draw the head of the snake followed by its tail
@@ -84,8 +82,17 @@ void drawSnake() {
   rect(head.x,head.y,10,10);
   //drawTail();
 }
+void manageTail(){
+ checkTailCollision();
+ drawTail();
+ 
+}
+//left off here, on part 3 *********************
 void drawTail(){
-   rect(head.x-10,head.y-10, 10, 10);
+  for(int i = 0; i <tail.size(); i++){
+    Segment s = tail.get(i);
+        rect(s.x, s.y, 10,10);
+  }
 }
 
  void checkTailCollision() {
