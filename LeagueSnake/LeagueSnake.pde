@@ -85,9 +85,11 @@ void drawSnake() {
 void manageTail(){
  checkTailCollision();
  drawTail();
- 
+   
+   tail.add(new Segment(head.x,head.y));
+   tail.remove(0); 
 }
-//left off here, on part 3 *********************
+//left off here, on part 3 
 void drawTail(){
   for(int i = 0; i <tail.size(); i++){
     Segment s = tail.get(i);
@@ -111,6 +113,16 @@ void drawTail(){
   if(keyCode==RIGHT){
     direction=RIGHT; 
   }
+  //I left off here on part 3, tail collision  *****************
+  for(int i=0; i<tail.size();i++){
+    if(head.x==tail.get(i).x&&head.y==tail.get(i).y){
+    foodEaten=0;
+    tail.add(new Segment(head.x,head.y));
+    JOptionPane.showMessageDialog(null, "You lose!");
+    System.exit(0);
+    }
+  }
+  
 }
 
 void move() {
