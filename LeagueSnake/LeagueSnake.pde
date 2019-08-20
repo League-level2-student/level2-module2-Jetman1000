@@ -1,3 +1,5 @@
+//Finished!!
+
 // ***** SEGMENT CLASS *****
 // This class will be used to represent each part of the moving snake.
 //I left off on the 2nd part of the snake proect
@@ -80,7 +82,7 @@ void drawSnake() {
   //Draw the head of the snake followed by its tail
   fill(0,225,44);
   rect(head.x,head.y,10,10);
-  //drawTail();
+  manageTail();
 }
 void manageTail(){
  checkTailCollision();
@@ -113,10 +115,11 @@ void drawTail(){
   if(keyCode==RIGHT){
     direction=RIGHT; 
   }
-  //I left off here on part 3, tail collision  *****************
+  //I left off here on part 3, tail collision 
   for(int i=0; i<tail.size();i++){
     if(head.x==tail.get(i).x&&head.y==tail.get(i).y){
     foodEaten=0;
+    tail = new ArrayList<Segment>();
     tail.add(new Segment(head.x,head.y));
     JOptionPane.showMessageDialog(null, "You lose!");
     System.exit(0);
@@ -169,7 +172,9 @@ void checkBoundaries() {
    if(head.x==foodX&&head.y==foodY){
      dropFood();
     foodEaten++;
-    println (foodEaten);
+ tail.add(new Segment(head.x,head.y));
+ 
+ 
    }
   
  }
